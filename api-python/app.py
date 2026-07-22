@@ -26,41 +26,123 @@ def certificado():
 
     pdf = canvas.Canvas(arquivo)
 
+    # Tamanho A4
+    largura, altura = 595, 842
+
+
+    # Moldura
+    pdf.setLineWidth(3)
+
+    pdf.rect(
+        40,
+        40,
+        largura - 80,
+        altura - 80
+    )
+
+
+    # Título
+    pdf.setFont(
+        "Helvetica-Bold",
+        30
+    )
+
+    pdf.drawCentredString(
+        largura / 2,
+        700,
+        "CERTIFICADO"
+    )
+
+
+    # Linha decorativa
+    pdf.line(
+        150,
+        680,
+        450,
+        680
+    )
+
+
+    # Texto inicial
+    pdf.setFont(
+        "Helvetica",
+        16
+    )
+
+    pdf.drawCentredString(
+        largura / 2,
+        610,
+        "Certificamos que"
+    )
+
+
+    # Nome do aluno
     pdf.setFont(
         "Helvetica-Bold",
         22
     )
 
     pdf.drawCentredString(
-        300,
-        750,
-        "CERTIFICADO"
+        largura / 2,
+        560,
+        nome
     )
+
+
+    # Curso
     pdf.setFont(
         "Helvetica",
-        14
+        16
     )
 
     pdf.drawCentredString(
-        300,
-        600,
-        f"Certificamos que {nome}"
+        largura / 2,
+        500,
+        f"concluiu o curso de {curso}"
     )
 
+
+    # Carga horária
     pdf.drawCentredString(
-            300,
-            600,
-            f"concluiu o curso {curso}"
-        )
+        largura / 2,
+        460,
+        f"Carga horária: {carga}"
+    )
+
+
+    # Data
+    pdf.drawCentredString(
+        largura / 2,
+        400,
+        "Emitido em 22/07/2026"
+    )
+
+
+    # Assinatura
+    pdf.line(
+        180,
+        250,
+        400,
+        250
+    )
+
 
     pdf.drawCentredString(
-                300,
-                600,
-                f"carga horaria: {carga}"
-            )
+        largura / 2,
+        220,
+        "Coordenação SENAI"
+    )
+
+
+    # Rodapé
+    pdf.setFont(
+        "Helvetica-Oblique",
+        12
+    )
 
 
     pdf.save()
+
 
     return send_file(
         arquivo,
@@ -69,6 +151,9 @@ def certificado():
     )
 
 
-
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+
+    app.run(
+        host="0.0.0.0",
+        port=5000
+    )

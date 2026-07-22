@@ -27,9 +27,16 @@ export default function Home() {
     })
 
     if(resposta.ok){
-      const resultado = await resposta.json()
-      console.log(resultado)
-      alert("Dados enviados para gerar certificado")
+      const arquivo = await resposta.blob()
+
+      const url = window.URL.createObjectURL(arquivo)
+
+      const link = document.createElement("a")
+      link.href = url
+
+      link.download = "certificado.pdf"
+
+      link.click()
     } else{
       alert("Erro ao enviar dados")
     }
@@ -51,7 +58,7 @@ export default function Home() {
             <label className="block mb-2">Carga Horária</label>
             <input className="w-full border rounded-lg p-2" value={dados.cargaHoraria} onChange={(e)=>setDados({...dados, cargaHoraria: e.target.value})}/>
           </div>
-        <button onClick={gerarCertificado} className="w-full bg-blue-600 text-white rounded-lg p-3 houver:bg-blue-700 cursor-pointer"></button>
+        <button onClick={gerarCertificado} className="w-full bg-blue-600 text-white rounded-lg p-3 houver:bg-blue-700 cursor-pointer">Gerar Certificado</button>
       </div>
     </main>
   );
