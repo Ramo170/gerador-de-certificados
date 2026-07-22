@@ -24,7 +24,7 @@ Uma aplicação full-stack para geração automatizada de certificados em format
 
 Você pode rodar a aplicação rapidamente utilizando **Docker** ou executando os serviços de forma manual na sua máquina.
 
-### 🐳 Opção 1: Usando Docker Compose (Recomendado)
+### 🐳 Usando Docker Compose
 
 Certifique-se de ter o [Docker](https://www.docker.com/) e o Docker Compose instalados.
 
